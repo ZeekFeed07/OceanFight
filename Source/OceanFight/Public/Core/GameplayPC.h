@@ -19,6 +19,8 @@ protected:
 	virtual bool LoadData();
 
 	virtual bool CastBaseClasses();
+
+	virtual void SetupMode();
 private:
 
 public:

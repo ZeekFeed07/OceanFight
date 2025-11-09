@@ -1,6 +1,7 @@
 #include "Core/GameplayPC.h"
 #include "Core/GameplayPawn.h"
 #include "Core/GameplayHUD.h"
+#include "GameManager2D.h"
 #include "Declarations.h"
 
 DEFINE_LOG_CATEGORY(LogGameplayInfo)
@@ -22,13 +23,9 @@ void AGameplayPC::BeginPlay()
 	Super::BeginPlay();
 
 	CastBaseClasses();
+	SetupMode();
 
 	HUD->InitWidget(this);
-
-	FInputModeGameAndUI Mode;
-	Mode.SetHideCursorDuringCapture(false);
-	SetInputMode(Mode);
-	bShowMouseCursor = true;
 }
 
 bool AGameplayPC::LoadData()
@@ -56,4 +53,12 @@ bool AGameplayPC::CastBaseClasses()
 		return false;
 	}
 	return true;
+}
+
+void AGameplayPC::SetupMode()
+{
+	FInputModeGameAndUI Mode;
+	Mode.SetHideCursorDuringCapture(false);
+	SetInputMode(Mode);
+	bShowMouseCursor = true;
 }
